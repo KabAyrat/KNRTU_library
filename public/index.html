@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Библиотека КНИТУ</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    /* Header */
+    .header {
+      background: #931c1f;
+      box-shadow: 0 2px 10px rgba(147, 28, 31, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 70px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .logo-icon {
+      font-size: 2rem;
+      margin-right: 10px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-link.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-btn {
+      background: white;
+      color: #931c1f;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid white;
+    }
+
+    .auth-btn:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 40px 0;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .page-header h1 {
+      color: #931c1f;
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .page-header p {
+      color: #666;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .search-input {
+      width: 400px;
+      padding: 15px 25px;
+      border: 2px solid #e9ecef;
+      border-radius: 25px;
+      font-size: 16px;
+      background: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      border-color: #931c1f;
+      box-shadow: 0 6px 20px rgba(147, 28, 31, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 4px solid #931c1f;
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #931c1f;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    #book-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+      padding: 20px 0;
+    }
+
+    .book-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-left: 4px solid #931c1f;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .book-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #931c1f;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .book-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .book-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .book-detail .icon {
+      width: 20px;
+      text-align: center;
+      color: #931c1f;
+    }
+
+    .book-detail .label {
+      font-weight: 600;
+      color: #333;
+      min-width: 70px;
+    }
+
+    .book-detail .value {
+      color: #555;
+      font-weight: 500;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      color: #931c1f;
+      font-size: 1.2rem;
+      padding: 40px;
+    }
+
+    .loading::after {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(147, 28, 31, 0.3);
+      border-top: 2px solid #931c1f;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .no-books {
+      text-align: center;
+      color: #666;
+      font-size: 1.2rem;
+      padding: 60px 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 0 15px;
+      }
+      
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #931c1f;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      }
+      
+      .nav.active {
+        display: flex;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      
+      .search-input {
+        width: 100%;
+        max-width: 400px;
+      }
+      
+      #book-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .stats {
+        gap: 15px;
+      }
+      
+      .stat-item {
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="#" class="logo">
+        <span class="logo-icon">📚</span>
+        <span>Библиотека КНИТУ</span>
+      </a>
+      
+      <nav class="nav" id="nav">
+        <a href="#" class="nav-link active">Каталог</a>
+        <a href="about.html" class="nav-link">О системе</a>
+        <a href="contact.html" class="nav-link">Обратная связь</a>
+        <a href="profile.html" class="auth-btn" id="authBtn">Войти</a>
+      </nav>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>📚 Каталог книг</h1>
+      <p>Электронная библиотека Казанского национального исследовательского технологического университета</p>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="Поиск по названию или автору..." 
+             oninput="filterBooks(this.value)">
+    </div>
+
+    <div class="stats" id="stats" style="display: none;">
+      <div class="stat-item">
+        <span class="stat-number" id="total-books">0</span>
+        <span class="stat-label">Всего книг</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="visible-books">0</span>
+        <span class="stat-label">Показано</span>
+      </div>
+    </div>
+
+    <div id="book-list">
+      <div class="loading">Загружаем книги...</div>
+    </div>
+  </div>
+
+  <script>
+    let allBooks = [];
+    let filteredBooks = [];
+
+    function toggleMobileMenu() {
+      document.getElementById('nav').classList.toggle('active');
+    }
+
+    // Books functionality (сохранена оригинальная логика)
+    async function loadBooks() {
+      try {
+        const res = await fetch('/api/books');
+        const books = await res.json();
+        
+        allBooks = books;
+        filteredBooks = books;
+        
+        displayBooks(books);
+        updateStats();
+        
+        document.getElementById('stats').style.display = 'flex';
+        
+      } catch (error) {
+        console.error('Ошибка загрузки книг:', error);
+        document.getElementById('book-list').innerHTML = 
+          '<div class="no-books">Ошибка загрузки книг. Попробуйте перезагрузить страницу.</div>';
+      }
+    }
+
+    function displayBooks(books) {
+      const list = document.getElementById('book-list');
+      
+      if (books.length === 0) {
+        list.innerHTML = '<div class="no-books">Книги не найдены</div>';
+        return;
+      }
+      
+      list.innerHTML = '';
+      
+      books.forEach((book, index) => {
+        const card = document.createElement('div');
+        card.className = 'book-card fade-in';
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        card.innerHTML = `
+          <h3 class="book-title">${escapeHtml(book.title)}</h3>
+          <div class="book-info">
+            <div class="book-detail">
+              <span class="icon">👤</span>
+              <span class="label">Автор:</span>
+              <span class="value">${escapeHtml(book.author)}</span>
+            </div>
+            <div class="book-detail">
+              <span class="icon">📅</span>
+              <span class="label">Год:</span>
+              <span class="value">${escapeHtml(book.year_written)}</span>
+            </div>
+          </div>
+        `;
+        
+        list.appendChild(card);
+      });
+    }
+
+    function filterBooks(searchTerm) {
+      if (!searchTerm.trim()) {
+        filteredBooks = allBooks;
+      } else {
+        const term = searchTerm.toLowerCase();
+        filteredBooks = allBooks.filter(book => 
+          book.title.toLowerCase().includes(term) || 
+          book.author.toLowerCase().includes(term)
+        );
+      }
+      
+      displayBooks(filteredBooks);
+      updateStats();
+    }
+
+    function updateStats() {
+      document.getElementById('total-books').textContent = allBooks.length;
+      document.getElementById('visible-books').textContent = filteredBooks.length;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Initialize
+    loadBooks();
+  </script>
+</body>
+</html>
