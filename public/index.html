@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Библиотека КНИТУ</title>
+    <title>Каталог книг - Библиотека КНИТУ</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
-
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <a href="#" class="logo">
                 <span class="logo-icon">📚</span>
                 <span>Библиотека КНИТУ</span>
             </a>
-
             <nav class="nav" id="nav">
                 <a href="#" class="nav-link active">Каталог</a>
                 <a href="about.html" class="nav-link">О системе</a>
                 <a href="contact.html" class="nav-link">Обратная связь</a>
                 <a href="profile.html" class="auth-btn" id="authBtn">Войти</a>
             </nav>
-
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
     </header>
-
     <div class="container">
         <div class="page-header">
             <h1>📚 Каталог книг</h1>
             <p>Электронная библиотека Казанского национального исследовательского технологического университета</p>
         </div>
-
-        <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Поиск по названию или автору..."
-                oninput="filterBooks(this.value)">
-        </div>
-
-        <div class="stats" id="stats" style="display: none;">
-            <div class="stat-item">
-                <span class="stat-number" id="total-books">0</span>
-                <span class="stat-label">Всего книг</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="visible-books">0</span>
-                <span class="stat-label">Показано</span>
-            </div>
-        </div>
-
-        <div id="book-list">
-            <div class="loading">Загружаем книги...</div>
+        <div class="main-content">
+            <aside class="sidebar">
+                <h3>🔍 Фильтры</h3>
+                <div class="filter-group">
+                    <label for="search-input">Поиск по названию или автору:</label>
+                    <input type="text" id="search-input" class="search-input" placeholder="Введите текст для поиска..."
+                        oninput="filterBooks()">
+                </div>
+                <div class="filter-group">
+                    <label for="discipline-filter">Дисциплина:</label>
+                    <select id="discipline-filter" class="filter-select" onchange="filterBooks()">
+                        <option value="">Все дисциплины</option>
+                    </select>
+                </div>
+                <div class="stats" id="stats" style="display: none;">
+                    <div class="stat-item">
+                        <span class="stat-label">Всего книг:</span>
+                        <span class="stat-number" id="total-books">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Показано:</span>
+                        <span class="stat-number" id="visible-books">0</span>
+                    </div>
+                </div>
+            </aside>
+            <main class="content-area">
+                <div id="book-list" class="book-list">
+                    <div class="loading">Загружаем книги...</div>
+                </div>
+            </main>
         </div>
     </div>
-
-<script src="scripts/script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        input,
+        select {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .form-container {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Добро пожаловать!</h1>
+    <div class="form-container">
+        <!-- Форма регистрации -->
+        <form id="registerForm">
+            <h2>Регистрация</h2>
+            <input type="text" name="full_name" placeholder="ФИО" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <select name="role" required>
+                <option value="student">Студент</option>
+                <option value="librarian">Библиотекарь</option>
+            </select>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+
+        <!-- Форма авторизации -->
+        <form id="loginForm">
+            <h2>Вход</h2>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('#register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const full_name = document.querySelector('#register-name').value;
+            const email = document.querySelector('#register-email').value;
+            const password = document.querySelector('#register-password').value;
+
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    full_name,
+                    email,
+                    password,
+                    role: 'student' // или librarian
+                })
+            });
+
+            const text = await response.text();
+            alert(text);
+        });
+    </script>
+
+</body>
+
+</html>
