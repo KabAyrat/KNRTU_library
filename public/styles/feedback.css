@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    color: #333;
+}
+.header {
+    background: #931c1f;
+    box-shadow: 0 2px 10px rgba(147, 28, 31, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+.nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+.auth-btn {
+    background: white;
+    color: #931c1f;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+}
+.auth-btn:hover {
+    background: transparent;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 0;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.page-header h1 {
+    color: #931c1f;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+.page-header p {
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+.feedback-form {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #931c1f;
+}
+.form-group {
+    margin-bottom: 25px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.form-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    font-size: 16px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+.form-input:focus {
+    border-color: #931c1f;
+    box-shadow: 0 4px 15px rgba(147, 28, 31, 0.2);
+    transform: translateY(-2px);
+}
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+.submit-btn {
+    width: 100%;
+    padding: 15px 30px;
+    background: #931c1f;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(147, 28, 31, 0.3);
+}
+.submit-btn:hover {
+    background: #7a1719;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(147, 28, 31, 0.4);
+}
+.submit-btn:active {
+    transform: translateY(0);
+}
+.form-description {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+.contact-info {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+}
+.contact-info h3 {
+    color: #931c1f;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+.contact-info p {
+    color: #666;
+    margin-bottom: 8px;
+}
+.contact-info a {
+    color: #931c1f;
+    text-decoration: none;
+    font-weight: 500;
+}
+.contact-info a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #931c1f;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .nav.active {
+        display: flex;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .container {
+        padding: 20px 15px;
+    }
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    .feedback-form {
+        padding: 30px 20px;
+    }
+    .form-input {
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+}
+/* Функция для переключения мобильного меню */
+.nav.active {
+    display: flex;
+}

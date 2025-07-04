@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+.header {
+    background: #931c1f;
+    box-shadow: 0 2px 10px rgba(147, 28, 31, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+.nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+.auth-btn {
+    background: white;
+    color: #931c1f;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+}
+.auth-btn:hover {
+    background: transparent;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 0;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.page-header h1 {
+    color: #931c1f;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+.page-header p {
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+.content-section {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #931c1f;
+}
+.content-section h2 {
+    color: #931c1f;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.content-section h3 {
+    color: #931c1f;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+.content-section p {
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+.feature-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(147, 28, 31, 0.15);
+    border-color: #931c1f;
+}
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+.feature-card h4 {
+    color: #931c1f;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+.feature-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+.steps-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin-top: 20px;
+}
+.steps-list li {
+    counter-increment: step-counter;
+    margin-bottom: 20px;
+    padding-left: 50px;
+    position: relative;
+}
+.steps-list li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #931c1f;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.future-plans {
+    background: linear-gradient(135deg, #931c1f 0%, #7a1719 100%);
+    color: white;
+    border-left: none;
+}
+.future-plans h2 {
+    color: white;
+}
+.future-plans p {
+    color: rgba(255, 255, 255, 0.9);
+}
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+.plan-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.plan-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+.plan-item h4 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+.plan-item p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+.stat-item:hover {
+    border-color: #931c1f;
+    transform: translateY(-3px);
+}
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #931c1f;
+    display: block;
+    margin-bottom: 5px;
+}
+.stat-label {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #931c1f;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .nav.active {
+        display: flex;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .container {
+        padding: 20px 15px;
+    }
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    .content-section {
+        padding: 30px 20px;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.nav.active {
+    display: flex;
+}
