@@ -6,12 +6,11 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-app.use(express.static('public')); // где лежат HTML, CSS, JS
-app.use(express.json()); // если отправляют JSON (например, из fetch)
-app.use(express.urlencoded({ extended: true })); // <<< ВОТ ЭТО ОБЯЗАТЕЛЬНО ДЛЯ <form>
+app.use(express.static('public')); 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
 
-// >>> API для получения книг <<<
 app.get('/api/books', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM books');
